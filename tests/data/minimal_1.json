@@ -1,0 +1,298 @@
+{
+    "buttons": [
+        {
+            "enabled": true,
+            "fourth_param": 51,
+            "name": "CC 51"
+        },
+        {
+            "enabled": true,
+            "fourth_param": 52,
+            "name": "CC 52"
+        },
+        {
+            "enabled": true,
+            "fourth_param": 53,
+            "name": "CC 53"
+        },
+        {
+            "enabled": true,
+            "fourth_param": 54,
+            "name": "CC 54"
+        },
+        {
+            "enabled": true,
+            "fourth_param": 55,
+            "name": "CC 55"
+        },
+        {
+            "enabled": true,
+            "fourth_param": 56,
+            "name": "CC 56"
+        },
+        {
+            "enabled": true,
+            "fourth_param": 57,
+            "name": "CC 57"
+        },
+        {
+            "enabled": true,
+            "fourth_param": 58,
+            "name": "CC 58"
+        },
+        {
+            "enabled": true,
+            "fourth_param": 71,
+            "name": "CC 71"
+        },
+        {
+            "enabled": true,
+            "fourth_param": 72,
+            "name": "CC 72"
+        },
+        {
+            "enabled": true,
+            "fourth_param": 73,
+            "name": "CC 73"
+        },
+        {
+            "enabled": true,
+            "fourth_param": 74,
+            "name": "CC 74"
+        },
+        {
+            "enabled": true,
+            "fourth_param": 75,
+            "name": "CC 75"
+        },
+        {
+            "enabled": true,
+            "fourth_param": 76,
+            "name": "CC 76"
+        },
+        {
+            "enabled": true,
+            "fourth_param": 77,
+            "name": "CC 77"
+        },
+        {
+            "enabled": true,
+            "fourth_param": 78,
+            "name": "CC 78"
+        }
+    ],
+    "faders": [
+        {
+            "enabled": true,
+            "name": "CC 41",
+            "second_param": 41
+        },
+        {
+            "enabled": true,
+            "name": "CC 42",
+            "second_param": 42
+        },
+        {
+            "enabled": true,
+            "name": "CC 43",
+            "second_param": 43
+        },
+        {
+            "enabled": true,
+            "name": "CC 44",
+            "second_param": 44
+        }
+    ],
+    "footswitches": [
+        {
+            "enabled": true
+        }
+    ],
+    "knobs": [
+        {
+            "enabled": true,
+            "first_param": 21,
+            "name": "CC 21"
+        },
+        {
+            "enabled": true,
+            "first_param": 22,
+            "name": "CC 22"
+        },
+        {
+            "enabled": true,
+            "first_param": 23,
+            "name": "CC 23"
+        },
+        {
+            "enabled": true,
+            "first_param": 24,
+            "name": "CC 24"
+        },
+        {
+            "enabled": true,
+            "first_param": 25,
+            "name": "CC 25"
+        },
+        {
+            "enabled": true,
+            "first_param": 26,
+            "name": "CC 26"
+        },
+        {
+            "enabled": true,
+            "first_param": 27,
+            "name": "CC 27"
+        },
+        {
+            "enabled": true,
+            "first_param": 28,
+            "name": "CC 28"
+        },
+        {
+            "enabled": true,
+            "first_param": 31,
+            "name": "CC 31"
+        },
+        {
+            "enabled": true,
+            "first_param": 32,
+            "name": "CC 32"
+        },
+        {
+            "enabled": true,
+            "first_param": 33,
+            "name": "CC 33"
+        },
+        {
+            "enabled": true,
+            "first_param": 34,
+            "name": "CC 34"
+        },
+        {
+            "enabled": true,
+            "first_param": 35,
+            "name": "CC 35"
+        },
+        {
+            "enabled": true,
+            "first_param": 36,
+            "name": "CC 36"
+        },
+        {
+            "enabled": true,
+            "first_param": 37,
+            "name": "CC 37"
+        },
+        {
+            "enabled": false
+        }
+    ],
+    "name": "Minimal!",
+    "pad_hits": [
+        {
+            "enabled": true,
+            "name": "Note 44",
+            "third_param": 44
+        },
+        {
+            "enabled": true,
+            "name": "Note 45",
+            "third_param": 45
+        },
+        {
+            "enabled": true,
+            "name": "Note 46",
+            "third_param": 46
+        },
+        {
+            "enabled": true,
+            "name": "Note 47",
+            "third_param": 47
+        },
+        {
+            "enabled": true,
+            "name": "Note 48",
+            "third_param": 48
+        },
+        {
+            "enabled": true,
+            "name": "Note 49",
+            "third_param": 49
+        },
+        {
+            "enabled": true,
+            "name": "Note 50",
+            "third_param": 50
+        },
+        {
+            "enabled": true,
+            "name": "Note 51",
+            "third_param": 51
+        },
+        {
+            "enabled": true,
+            "name": "Note 36",
+            "third_param": 36
+        },
+        {
+            "enabled": true,
+            "name": "Note 37",
+            "third_param": 37
+        },
+        {
+            "enabled": true,
+            "name": "Note 38",
+            "third_param": 38
+        },
+        {
+            "enabled": true,
+            "name": "Note 39",
+            "third_param": 39
+        },
+        {
+            "enabled": true,
+            "name": "Note 40",
+            "third_param": 40
+        },
+        {
+            "enabled": true,
+            "name": "Note 41",
+            "third_param": 41
+        },
+        {
+            "enabled": true,
+            "name": "Note 42",
+            "third_param": 42
+        },
+        {
+            "enabled": true,
+            "name": "Note 43",
+            "third_param": 43
+        }
+    ],
+    "pedals": [
+        {
+            "enabled": true,
+            "name": "Expr.",
+            "second_param": 11
+        },
+        {
+            "enabled": true,
+            "name": "Sustain",
+            "second_param": 64
+        }
+    ],
+    "version": 1.0,
+    "wheels": [
+        {
+            "enabled": true,
+            "second_param": 0
+        },
+        {
+            "enabled": true,
+            "name": "CC 1",
+            "second_param": 1
+        }
+    ]
+}

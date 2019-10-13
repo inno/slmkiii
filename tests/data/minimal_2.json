@@ -1,0 +1,507 @@
+{
+    "-NOTES-": [
+        "[_param_name] fields are for reference and are not editable",
+        "Many fields are used/unused based on behavior or message_type"
+    ],
+    "buttons": [
+        {
+            "enabled": true,
+            "fourth_param": 51,
+            "name": "CC 51"
+        },
+        {
+            "channel": 1,
+            "enabled": true,
+            "fourth_param": 52,
+            "lsb_index": 98,
+            "message_type": 1,
+            "name": "CC 52",
+            "second_param": 5
+        },
+        {
+            "channel": 10,
+            "enabled": true,
+            "fourth_param": 53,
+            "message_type": 2,
+            "name": "CC 53",
+            "second_param": 7,
+            "third_param": 67
+        },
+        {
+            "channel": 12,
+            "enabled": true,
+            "fourth_param": 54,
+            "message_type": 3,
+            "name": "CC 54",
+            "second_param": 78,
+            "third_param": 1
+        },
+        {
+            "channel": 14,
+            "enabled": true,
+            "first_param": 23,
+            "fourth_param": 55,
+            "message_type": 4,
+            "name": "CC 55",
+            "second_param": 5
+        },
+        {
+            "behavior": 1,
+            "channel": 14,
+            "enabled": true,
+            "fourth_param": 53,
+            "name": "CC 56"
+        },
+        {
+            "action": 1,
+            "behavior": 1,
+            "channel": 14,
+            "enabled": true,
+            "fourth_param": 57,
+            "name": "CC 57"
+        },
+        {
+            "behavior": 2,
+            "channel": 13,
+            "enabled": true,
+            "first_param": 0,
+            "fourth_param": 58,
+            "name": "CC 58",
+            "second_param": 127,
+            "step": 5,
+            "third_param": 1
+        },
+        {
+            "action": 1,
+            "behavior": 2,
+            "channel": 16,
+            "enabled": true,
+            "first_param": 0,
+            "fourth_param": 71,
+            "name": "CC 71",
+            "pair": true,
+            "second_param": 127,
+            "step": -12,
+            "wrap": true
+        },
+        {
+            "action": 1,
+            "behavior": 2,
+            "channel": 16,
+            "enabled": true,
+            "first_param": 0,
+            "fourth_param": 71,
+            "name": "CC 71",
+            "pair": true,
+            "second_param": 127,
+            "step": 12,
+            "wrap": true
+        },
+        {
+            "behavior": 3,
+            "channel": 2,
+            "enabled": true,
+            "fourth_param": 73,
+            "name": "CC 73"
+        },
+        {
+            "action": 1,
+            "behavior": 3,
+            "channel": 2,
+            "enabled": true,
+            "fourth_param": 74,
+            "name": "CC 74"
+        },
+        {
+            "enabled": true,
+            "fourth_param": 75,
+            "name": "CC 75"
+        },
+        {
+            "fourth_param": 76,
+            "name": "CC 76"
+        },
+        {
+            "fourth_param": 77,
+            "name": "CC 77"
+        },
+        {
+            "enabled": true,
+            "fourth_param": 78,
+            "name": "CC 78"
+        }
+    ],
+    "faders": [
+        {
+            "channel": 1,
+            "enabled": true,
+            "name": "CC 41",
+            "second_param": 41
+        },
+        {
+            "channel": 1,
+            "enabled": true,
+            "lsb_index": 253,
+            "message_type": 1,
+            "name": "CC 42",
+            "second_param": 42
+        },
+        {
+            "channel": 1,
+            "enabled": true,
+            "from_value": 5,
+            "message_type": 3,
+            "name": "CC 43",
+            "second_param": 43,
+            "to_value": 93
+        },
+        {
+            "channel": 1,
+            "enabled": true,
+            "from_value": 4,
+            "message_type": 3,
+            "name": "CC 44",
+            "second_param": 44,
+            "to_value": 10
+        },
+        {
+            "channel": 1,
+            "enabled": true,
+            "from_value": 5,
+            "message_type": 5,
+            "name": "CC 45",
+            "second_param": 45,
+            "to_value": 20
+        },
+        {
+            "channel": 1,
+            "enabled": true,
+            "from_value": 59,
+            "message_type": 6,
+            "name": "CC 46",
+            "second_param": 46,
+            "to_value": 78
+        },
+        {
+            "channel": 1,
+            "enabled": true,
+            "name": "CC 47",
+            "second_param": 47
+        },
+        {
+            "channel": 1,
+            "enabled": true,
+            "name": "CC 48",
+            "second_param": 48
+        }
+    ],
+    "footswitches": [
+        {
+            "enabled": true
+        }
+    ],
+    "knobs": [
+        {
+            "channel": 1,
+            "enabled": true,
+            "first_param": 21,
+            "name": "CC 21"
+        },
+        {
+            "channel": 1,
+            "eight_bit": 1,
+            "enabled": true,
+            "first_param": 22,
+            "from_value": 12,
+            "lsb_index": 99,
+            "message_type": 1,
+            "name": "CC 22",
+            "pivot": 4,
+            "to_value": 78
+        },
+        {
+            "channel": 1,
+            "enabled": true,
+            "first_param": 75,
+            "message_type": 2,
+            "name": "CC 23",
+            "relative": 1,
+            "resolution": 30,
+            "step": 3
+        },
+        {
+            "channel": 1,
+            "enabled": true,
+            "first_param": 24,
+            "from_value": 5,
+            "message_type": 3,
+            "name": "CC 24",
+            "to_value": 29
+        },
+        {
+            "channel": 1,
+            "eight_bit": 1,
+            "enabled": true,
+            "first_param": 25,
+            "from_value": 12,
+            "message_type": 4,
+            "name": "CC 25",
+            "to_value": 101
+        },
+        {
+            "channel": 1,
+            "enabled": true,
+            "first_param": 26,
+            "name": "CC 26"
+        },
+        {
+            "channel": 1,
+            "enabled": true,
+            "first_param": 27,
+            "name": "CC 27"
+        },
+        {
+            "channel": 1,
+            "enabled": true,
+            "first_param": 28,
+            "name": "CC 28"
+        },
+        {
+            "channel": 1,
+            "enabled": true,
+            "first_param": 31,
+            "name": "CC 31"
+        },
+        {
+            "channel": 1,
+            "enabled": true,
+            "first_param": 32,
+            "name": "CC 32"
+        },
+        {
+            "channel": 1,
+            "enabled": true,
+            "first_param": 33,
+            "name": "CC 33"
+        },
+        {
+            "channel": 1,
+            "enabled": true,
+            "first_param": 34,
+            "name": "CC 34"
+        },
+        {
+            "channel": 1,
+            "enabled": true,
+            "first_param": 35,
+            "name": "CC 35"
+        },
+        {
+            "channel": 1,
+            "enabled": true,
+            "first_param": 36,
+            "name": "CC 36"
+        },
+        {
+            "channel": 1,
+            "enabled": true,
+            "first_param": 37,
+            "name": "CC 37"
+        },
+        {
+            "channel": 1,
+            "enabled": true,
+            "first_param": 38,
+            "name": "CC 38"
+        }
+    ],
+    "name": "MIDI",
+    "pad_hits": [
+        {
+            "enabled": true,
+            "name": "Note 44",
+            "third_param": 44
+        },
+        {
+            "enabled": true,
+            "name": "Note 45",
+            "third_param": 45
+        },
+        {
+            "name": "Note 46",
+            "third_param": 46
+        },
+        {
+            "name": "Note 47",
+            "third_param": 47
+        },
+        {
+            "channel": 5,
+            "enabled": true,
+            "name": "Note 48",
+            "third_param": 48
+        },
+        {
+            "enabled": true,
+            "name": "Note 49",
+            "third_param": 49
+        },
+        {
+            "enabled": true,
+            "name": "Note 50",
+            "third_param": 50
+        },
+        {
+            "enabled": true,
+            "name": "Note 51",
+            "third_param": 51
+        },
+        {
+            "enabled": true,
+            "name": "Note 36",
+            "third_param": 36
+        },
+        {
+            "enabled": true,
+            "name": "Note 37",
+            "third_param": 37
+        },
+        {
+            "enabled": true,
+            "name": "Note 38",
+            "third_param": 38
+        },
+        {
+            "enabled": true,
+            "name": "Note 39",
+            "third_param": 39
+        },
+        {
+            "enabled": true,
+            "name": "Note 40",
+            "third_param": 40
+        },
+        {
+            "enabled": true,
+            "name": "Note 41",
+            "third_param": 41
+        },
+        {
+            "enabled": true,
+            "name": "Note 42",
+            "third_param": 42
+        },
+        {
+            "enabled": true,
+            "name": "Note 43",
+            "third_param": 43
+        }
+    ],
+    "pad_pressures": [
+        {
+            "channel": 1,
+            "enabled": true,
+            "second_param": 44
+        },
+        {
+            "channel": 1,
+            "second_param": 45
+        },
+        {
+            "channel": 1,
+            "enabled": true,
+            "second_param": 46
+        },
+        {
+            "channel": 1,
+            "second_param": 47
+        },
+        {
+            "channel": 1,
+            "enabled": true,
+            "second_param": 48
+        },
+        {
+            "channel": 1,
+            "enabled": true,
+            "second_param": 49
+        },
+        {
+            "channel": 1,
+            "enabled": true,
+            "second_param": 50
+        },
+        {
+            "channel": 1,
+            "enabled": true,
+            "second_param": 51
+        },
+        {
+            "channel": 1,
+            "enabled": true,
+            "second_param": 36
+        },
+        {
+            "channel": 1,
+            "enabled": true,
+            "second_param": 37
+        },
+        {
+            "channel": 1,
+            "enabled": true,
+            "second_param": 38
+        },
+        {
+            "channel": 1,
+            "enabled": true,
+            "second_param": 39
+        },
+        {
+            "channel": 1,
+            "enabled": true,
+            "second_param": 40
+        },
+        {
+            "channel": 1,
+            "enabled": true,
+            "second_param": 41
+        },
+        {
+            "channel": 1,
+            "enabled": true,
+            "second_param": 42
+        },
+        {
+            "channel": 1,
+            "enabled": true,
+            "second_param": 43
+        }
+    ],
+    "pedals": [
+        {
+            "channel": 1,
+            "enabled": true,
+            "name": "Expr.",
+            "second_param": 11
+        },
+        {
+            "channel": 1,
+            "enabled": true,
+            "name": "Sustain",
+            "second_param": 64
+        }
+    ],
+    "version": 1.0,
+    "wheels": [
+        {
+            "channel": 1,
+            "enabled": true
+        },
+        {
+            "channel": 1,
+            "enabled": true,
+            "name": "CC 1",
+            "second_param": 1
+        }
+    ]
+}

@@ -1,0 +1,6 @@
+.Python
+.coverage
+*.pyc
+bin/
+include/
+lib/
