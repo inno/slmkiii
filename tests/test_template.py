@@ -1,0 +1,174 @@
+import tempfile
+import os
+import slmkiii
+import unittest
+from unittest import mock
+import slmkiii.template.sections as sections
+from slmkiii.template.input import Input
+
+
+class TestTemplate(unittest.TestCase):
+    def assert_equal_templates(self, template1, template2):
+        json1 = template1.export_json()
+        json2 = template2.export_json()
+        self.assertEqual(json1["name"], json2["name"])
+        self.assertEqual(json1["version"], json2["version"])
+        for sdata in sections:
+            section = sdata["name"]
+            self.assertListEqual(json1[section], json2[section])
+        json1 = template1.export_json(minify=True)
+        json2 = template2.export_json(minify=True)
+        self.assertEqual(json1["name"], json2["name"])
+        self.assertEqual(json1["version"], json2["version"])
+        for sdata in sections:
+            section = sdata["name"]
+            self.assertListEqual(json1[section], json2[section])
+
+    def test_parse_sysex_and_json_export(self):
+        template1 = slmkiii.Template("tests/data/expected_1.json")
+        template2 = slmkiii.Template("tests/data/test1.syx")
+        self.assertDictEqual(template1.export_json(), template2.export_json())
+
+    def test_parse_seven_bit_raw_and_json_export(self):
+        with open("tests/data/test1.syx", "rb") as r:
+            raw = r.read()
+        template1 = slmkiii.Template("tests/data/expected_1.json")
+        template2 = slmkiii.Template(raw)
+        self.assertDictEqual(template1.export_json(), template2.export_json())
+
+    def test_parse_eight_bit_raw(self):
+        with open("tests/data/test1.syx", "rb") as r:
+            raw = r.read()
+        template1 = slmkiii.Template(raw)
+        template2 = slmkiii.Template(template1._data)
+        self.assertDictEqual(template1.export_json(), template2.export_json())
+
+    def test_parse_invalid_sysex(self):
+        with open("tests/data/test1.syx", "rb") as r:
+            raw = r.read()
+        raw += b"uh oh"
+        with self.assertRaises(slmkiii.errors.ErrorUnknownData):
+            slmkiii.Template(raw)
+        with self.assertRaises(slmkiii.errors.ErrorUnknownData):
+            slmkiii.Template("wut")
+
+    def test_sysex_export_sysex(self):
+        template1 = slmkiii.Template("tests/data/expected_1.json")
+        with open("tests/data/expected_1.syx", "rb") as f:
+            sysex = f.read()
+        self.assertEqual(sysex, template1.export_sysex())
+
+    def test_save_export_json(self):
+        tf = tempfile.NamedTemporaryFile(suffix=".syx")
+        template1 = slmkiii.Template("tests/data/expected_1.json")
+        template1.save(tf.name, overwrite=True)
+        template2 = slmkiii.Template(tf.name)
+        with open("tests/data/expected_1.syx", "rb") as f:
+            sysex2 = f.read()
+        self.assertEqual(template2.export_sysex(), sysex2)
+
+    def test_save_json(self):
+        tf = tempfile.NamedTemporaryFile(suffix=".json")
+        template1 = slmkiii.Template("tests/data/test1.syx")
+        template1.save(tf.name, overwrite=True)
+        template2 = slmkiii.Template(tf.name)
+        self.assertDictEqual(template1.export_json(), template2.export_json())
+
+    def test_save_export_sysex(self):
+        with tempfile.NamedTemporaryFile(suffix=".syx") as tf:
+            template1 = slmkiii.Template("tests/data/expected_1.json")
+            template1.save(tf.name, overwrite=True)
+            with open(tf.name, "rb") as f:
+                sysex1 = f.read()
+        with open("tests/data/expected_1.syx", "rb") as f:
+            sysex2 = f.read()
+        self.assertEqual(sysex1, sysex2)
+
+    def test_default_json(self):
+        template1 = slmkiii.Template("tests/data/minimal_1.json")
+        template2 = slmkiii.Template("tests/data/expected_2.json")
+        self.assertDictEqual(template1.export_json(), template2.export_json())
+        self.assertEqual(template1.knobs[0].message_type_name, "CC")
+        self.assertEqual(template1.knobs[0].short_message_type_name, "CC")
+
+    def test_invalid_extension(self):
+        with (
+            tempfile.NamedTemporaryFile(suffix=".fail") as tf,
+            self.assertRaises(slmkiii.errors.ErrorUnknownExtension),
+        ):
+            slmkiii.Template(tf.name)
+
+    def test_bad_import(self):
+        with self.assertRaises(slmkiii.errors.ErrorTooManyItemsInSection):
+            slmkiii.Template("tests/data/expected_bad_1.json")
+
+    def test_minify_json(self):
+        template1 = slmkiii.Template("tests/data/minimal_2.json")
+        template2 = slmkiii.Template("tests/data/test2.syx")
+        self.assert_equal_templates(template1, template2)
+
+    def test_bad_json_version(self):
+        with self.assertRaises(slmkiii.errors.ErrorUnknownVersion):
+            slmkiii.Template("tests/data/bad_version.json")
+
+    def test_bad_checksum(self):
+        with self.assertRaises(slmkiii.errors.ErrorInvalidChecksum):
+            slmkiii.Template("tests/data/bad_checksum.syx")
+
+    def test_do_not_replace(self):
+        with tempfile.NamedTemporaryFile(suffix=".syx") as tf:
+            template = slmkiii.Template("tests/data/minimal_2.json")
+            with self.assertRaises(slmkiii.errors.ErrorFileExists):
+                template.save(tf.name, overwrite=True)
+                template.save(tf.name)
+
+    def test_create_new(self):
+        with tempfile.NamedTemporaryFile(suffix=".syx") as tf:
+            template1 = slmkiii.Template()
+            template1.save(tf.name, overwrite=True)
+            template2 = slmkiii.Template(tf.name)
+            self.assert_equal_templates(template1, template2)
+
+    def test_save_without_overwrite_allows_new_file(self):
+        template = slmkiii.Template("tests/data/test1.syx")
+        with tempfile.TemporaryDirectory() as td:
+            filename = os.path.join(td, "new-template.json")
+            template.save(filename)
+            self.assertTrue(os.path.exists(filename))
+
+    def test_open_sysex_ignores_unknown_block_types(self):
+        template1 = slmkiii.Template("tests/data/test1.syx")
+        sysex = template1.export_sysex()
+        chunks = sysex[1:-1].split(b"\xf7\xf0")
+        unknown_chunk = bytearray(chunks[1])
+        unknown_chunk[6] = 4
+        chunks.insert(1, bytes(unknown_chunk))
+        sysex_with_unknown_chunk = b"\xf0" + b"\xf7\xf0".join(chunks) + b"\xf7"
+        template2 = slmkiii.Template()
+        template2._open_sysex(None, raw=sysex_with_unknown_chunk)
+        self.assertDictEqual(template1.export_json(), template2.export_json())
+
+    def test_save_and_open_file_with_unhandled_file_type(self):
+        template = slmkiii.Template("tests/data/test1.syx")
+        with mock.patch(
+            "slmkiii.template.utils.file_type", return_value="other"
+        ):
+            self.assertIsNone(template.save("ignored.custom", overwrite=True))
+            self.assertIsNone(template._open_file("ignored.custom"))
+
+    def test_input_from_dict_without_channel(self):
+        input_data = Input(
+            {
+                "enabled": True,
+                "name": "NoChannel",
+                "message_type": 0,
+            }
+        )
+        exported = input_data.export_dict()
+        self.assertEqual(exported["name"], b"NoChannel")
+        self.assertTrue(exported["enabled"])
+        self.assertEqual(exported["message_type"], 0)
+
+    def test_input_init_without_data_raises(self):
+        with self.assertRaises(AttributeError):
+            Input()

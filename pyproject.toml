@@ -1,0 +1,63 @@
+[project]
+name = "slmkiii"
+version = "1.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.14"
+dependencies = [
+    "pytest>=9.0.3",
+    "pytest-cov>=7.1.0",
+]
+
+[tool.pytest.ini_options]
+pythonpath = "."
+testpaths = [
+    "tests",
+]
+
+[tool.ruff]
+line-length = 79
+indent-width = 4
+
+[tool.ruff.format]
+quote-style = "double"
+indent-style = "space"
+skip-magic-trailing-comma = false
+
+[tool.ruff.lint]
+preview = true
+explicit-preview-rules = true
+dummy-variable-rgx = "^(_+|(_+[a-zA-Z0-9_]*[a-zA-Z0-9]+?))$"
+
+select = [
+    "ANN",  # flake8-annotations
+    "B",  # flake8-bugbear
+    "C90",  # mccabe (code complexity)
+    "E",  # pycodestyle
+    "F",  # Pyflakes
+    "RET",  # flake8-return
+    "SIM",  # flake8-simplify
+    "S",  # flake8-bandit
+    "UP",  # pyupgrade
+    "E203",
+]
+
+ignore = [
+    "UP007",  # Do not recomment translating Union to X | Y
+    "SIM102",  # Allow nested `if` for ease of reading
+    "RET505",  # Don't force `if` when `elif` follows a return
+    "S101",  # Use of `assert` detected
+]
+
+[tool.ruff.lint.per-file-ignores]
+"tests/*" = [
+    "ANN001",
+    "ANN201",
+    "ANN202",
+]
+
+[tool.ruff.lint.isort]
+no-sections = true
+
+[tool.ruff.lint.mccabe]
+max-complexity = 9
