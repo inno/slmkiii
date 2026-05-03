@@ -43,7 +43,7 @@ class TestTemplate(unittest.TestCase):
     def test_parse_invalid_sysex(self):
         with open('tests/data/test1.syx', 'rb') as r:
             raw = r.read()
-        raw += 'uh oh'
+        raw += b'uh oh'
         with self.assertRaises(slmkiii.errors.ErrorUnknownData):
             slmkiii.Template(raw)
         with self.assertRaises(slmkiii.errors.ErrorUnknownData):
