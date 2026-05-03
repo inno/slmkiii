@@ -60,7 +60,7 @@ Tl;dr: Do whatever you want with it and I'd appreciate a shoutout. Don't blame m
 
 MIT License
 
-Copyright (c) 2019 inno
+Copyright (c) 2019-2026 inno
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
