@@ -39,10 +39,10 @@ See `examples/`
 ### Testing
 
 Simple unittest
-`python -m unittest test`
+`uv run pytest`
 
 Code coverage
-`coverage run -m unittest tests && coverage report -m`
+`uv run pytest --cov --cov-branch`
 
 ### Future
 
