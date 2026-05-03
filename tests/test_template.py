@@ -1,7 +1,10 @@
 import tempfile
+import os
 import slmkiii
 import unittest
+from unittest import mock
 import slmkiii.template.sections as sections
+from slmkiii.template.input import Input
 
 
 class TestTemplate(unittest.TestCase):
@@ -123,3 +126,45 @@ class TestTemplate(unittest.TestCase):
         template1.save(tf.name, overwrite=True)
         template2 = slmkiii.Template(tf.name)
         self.assert_equal_templates(template1, template2)
+
+    def test_save_without_overwrite_allows_new_file(self):
+        template = slmkiii.Template("tests/data/test1.syx")
+        with tempfile.TemporaryDirectory() as td:
+            filename = os.path.join(td, "new-template.json")
+            template.save(filename)
+            self.assertTrue(os.path.exists(filename))
+
+    def test_open_sysex_ignores_unknown_block_types(self):
+        template1 = slmkiii.Template("tests/data/test1.syx")
+        sysex = template1.export_sysex()
+        chunks = sysex[1:-1].split(b"\xf7\xf0")
+        unknown_chunk = bytearray(chunks[1])
+        unknown_chunk[6] = 4
+        chunks.insert(1, bytes(unknown_chunk))
+        sysex_with_unknown_chunk = b"\xf0" + b"\xf7\xf0".join(chunks) + b"\xf7"
+        template2 = slmkiii.Template()
+        template2._open_sysex(None, raw=sysex_with_unknown_chunk)
+        self.assertDictEqual(template1.export_json(), template2.export_json())
+
+    def test_save_and_open_file_with_unhandled_file_type(self):
+        template = slmkiii.Template("tests/data/test1.syx")
+        with mock.patch("slmkiii.template.utils.file_type", return_value="other"):
+            self.assertIsNone(template.save("ignored.custom", overwrite=True))
+            self.assertIsNone(template._open_file("ignored.custom"))
+
+    def test_input_from_dict_without_channel(self):
+        input_data = Input(
+            {
+                "enabled": True,
+                "name": "NoChannel",
+                "message_type": 0,
+            }
+        )
+        exported = input_data.export_dict()
+        self.assertEqual(exported["name"], b"NoChannel")
+        self.assertTrue(exported["enabled"])
+        self.assertEqual(exported["message_type"], 0)
+
+    def test_input_init_without_data_raises(self):
+        with self.assertRaises(AttributeError):
+            Input()
