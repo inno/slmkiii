@@ -75,11 +75,11 @@ class TestTemplate(unittest.TestCase):
         self.assertDictEqual(template1.export_json(), template2.export_json())
 
     def test_save_export_sysex(self):
-        tf = tempfile.NamedTemporaryFile(suffix=".syx")
-        template1 = slmkiii.Template("tests/data/expected_1.json")
-        template1.save(tf.name, overwrite=True)
-        with open(tf.name, "rb") as f:
-            sysex1 = f.read()
+        with tempfile.NamedTemporaryFile(suffix=".syx") as tf:
+            template1 = slmkiii.Template("tests/data/expected_1.json")
+            template1.save(tf.name, overwrite=True)
+            with open(tf.name, "rb") as f:
+                sysex1 = f.read()
         with open("tests/data/expected_1.syx", "rb") as f:
             sysex2 = f.read()
         self.assertEqual(sysex1, sysex2)
@@ -92,8 +92,10 @@ class TestTemplate(unittest.TestCase):
         self.assertEqual(template1.knobs[0].short_message_type_name, "CC")
 
     def test_invalid_extension(self):
-        tf = tempfile.NamedTemporaryFile(suffix=".fail")
-        with self.assertRaises(slmkiii.errors.ErrorUnknownExtension):
+        with (
+            tempfile.NamedTemporaryFile(suffix=".fail") as tf,
+            self.assertRaises(slmkiii.errors.ErrorUnknownExtension),
+        ):
             slmkiii.Template(tf.name)
 
     def test_bad_import(self):
@@ -114,18 +116,18 @@ class TestTemplate(unittest.TestCase):
             slmkiii.Template("tests/data/bad_checksum.syx")
 
     def test_do_not_replace(self):
-        tf = tempfile.NamedTemporaryFile(suffix=".syx")
-        template = slmkiii.Template("tests/data/minimal_2.json")
-        with self.assertRaises(slmkiii.errors.ErrorFileExists):
-            template.save(tf.name, overwrite=True)
-            template.save(tf.name)
+        with tempfile.NamedTemporaryFile(suffix=".syx") as tf:
+            template = slmkiii.Template("tests/data/minimal_2.json")
+            with self.assertRaises(slmkiii.errors.ErrorFileExists):
+                template.save(tf.name, overwrite=True)
+                template.save(tf.name)
 
     def test_create_new(self):
-        tf = tempfile.NamedTemporaryFile(suffix=".syx")
-        template1 = slmkiii.Template()
-        template1.save(tf.name, overwrite=True)
-        template2 = slmkiii.Template(tf.name)
-        self.assert_equal_templates(template1, template2)
+        with tempfile.NamedTemporaryFile(suffix=".syx") as tf:
+            template1 = slmkiii.Template()
+            template1.save(tf.name, overwrite=True)
+            template2 = slmkiii.Template(tf.name)
+            self.assert_equal_templates(template1, template2)
 
     def test_save_without_overwrite_allows_new_file(self):
         template = slmkiii.Template("tests/data/test1.syx")
@@ -148,7 +150,9 @@ class TestTemplate(unittest.TestCase):
 
     def test_save_and_open_file_with_unhandled_file_type(self):
         template = slmkiii.Template("tests/data/test1.syx")
-        with mock.patch("slmkiii.template.utils.file_type", return_value="other"):
+        with mock.patch(
+            "slmkiii.template.utils.file_type", return_value="other"
+        ):
             self.assertIsNone(template.save("ignored.custom", overwrite=True))
             self.assertIsNone(template._open_file("ignored.custom"))
 
